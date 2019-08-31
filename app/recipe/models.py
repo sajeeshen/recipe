@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self , email, password):
+    def create_superuser(self, email, password):
         """ Creating the super user"""
         user = self.create_user(email, password)
         user.is_staff = True
@@ -54,9 +54,9 @@ class Recipe(models.Model):
         related_name='createduser'
     )
 
-
     def __str__(self):
         return self.name
+
 
 class Ingredient(models.Model):
     """" Ingredient model"""
@@ -67,6 +67,7 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.text
+
 
 class Step(models.Model):
     """" Ingredient model"""

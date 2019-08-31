@@ -59,8 +59,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         for ingredient in ingredients:
             ingredients_id = ingredient.get('id', None)
             if ingredients_id:
-                ingredient_rec = Ingredient.objects.get(id=ingredients_id, recipe=instance)
-                ingredient_rec.text = ingredient.get('text', ingredient_rec.text)
+                ingredient_rec = Ingredient.objects.get(
+                    id=ingredients_id, recipe=instance)
+                ingredient_rec.text = ingredient.get(
+                    'text', ingredient_rec.text)
                 ingredient_rec.save()
             else:
                 Ingredient.objects.create(recipe=instance, **ingredient)

@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from recipe import models
+
+
 def create_test_user(email='sajeeshe@gmail.com',
                      password = 'somepass'):
     """" Create a test user for test case"""
@@ -35,12 +37,3 @@ class UserModelTests(TestCase):
         )
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
-
-class RecipeModelTest(TestCase):
-
-    def test_recipe_string(self):
-        """" Testing the Recipe model will return the string"""
-        recipe =models.Recipe.objects.create(
-            name='Rajma Masala',
-            user=create_test_user()
-        )

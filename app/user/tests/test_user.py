@@ -119,7 +119,9 @@ class PrivateUserApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, {
-            'full_name': self.user.full_name,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+
             'email': self.user.email,
         })
 
