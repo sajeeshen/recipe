@@ -14,8 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from .swagger_schema import SwaggerSchemaView
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Recipe API')
 
 urlpatterns = [
+    path('api-docs/', SwaggerSchemaView.as_view()),
+
     path('admin/', admin.site.urls),
+    path('api/recipe/', include('recipemanage.urls')),
+    path('api/user/', include('user.urls'))
+
 ]

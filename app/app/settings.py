@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_swagger',
     'recipe',
-    'recipemanage'
+    'recipemanage',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +75,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework.parsers.FormParser',
+    #     'rest_framework.parsers.MultiPartParser',
+    #     'rest_framework.parsers.JSONParser',
+    # ],
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     'rest_framework.renderers.JSONRenderer',
+    # ],
 
+}
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 

@@ -39,21 +39,31 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
+    def __str__(self):
+        if self.first_name:
+            return self.first_name
+        else:
+            return self.email
+
 class Recipe(models.Model):
     """Recipe object"""
     name = models.CharField(max_length=255)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='createduser'
     )
 
+
     def __str__(self):
-        return self.title
+        return self.name
 
 class Ingredient(models.Model):
     """" Ingredient model"""
     text = models.CharField(max_length=150)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe,
+                               on_delete=models.CASCADE,
+                               related_name="ingredient")
 
     def __str__(self):
         return self.text
@@ -61,4 +71,8 @@ class Ingredient(models.Model):
 class Step(models.Model):
     """" Ingredient model"""
     step_text = models.CharField(max_length=150)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE,
+                               related_name='step')
+
+    def __str__(self):
+        return self.step_text
